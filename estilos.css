@@ -1,0 +1,1080 @@
+/* =========================================================
+   MAPA DE NAVEGACIÓN – HOSPITAL
+   ESTILOS.CSS COMPLETO
+========================================================= */
+
+
+/* =========================================================
+   CONFIGURACIÓN GENERAL
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #eef3f8;
+    color: #183153;
+}
+
+
+/* =========================================================
+   CONTENEDOR PRINCIPAL
+========================================================= */
+
+.contenedor {
+    width: 98%;
+    max-width: 1800px;
+    margin: 18px auto;
+    padding: 18px;
+    background: #ffffff;
+    border-radius: 14px;
+
+    box-shadow:
+        0 8px 28px
+        rgba(0, 0, 0, 0.10);
+}
+
+
+/* =========================================================
+   ENCABEZADO
+========================================================= */
+
+.encabezado {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.encabezado h1 {
+    margin: 0 0 6px;
+    color: #073b70;
+    font-size: 32px;
+    font-weight: 800;
+}
+
+.subtitulo {
+    margin: 0;
+    color: #64748b;
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   MAPA
+========================================================= */
+
+.mapa-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: #ffffff;
+    border-radius: 12px;
+
+    box-shadow:
+        0 4px 16px
+        rgba(0, 0, 0, 0.10);
+}
+
+.mapa-imagen {
+    display: block;
+    width: 100%;
+    height: auto;
+
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+
+/* =========================================================
+   HOTSPOTS GENERALES
+========================================================= */
+
+.hotspot {
+    position: absolute;
+
+    padding: 0;
+    margin: 0;
+
+    background: transparent;
+
+    border: 2px solid transparent;
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    z-index: 60;
+
+    transition:
+        background-color 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        transform 0.18s ease;
+}
+
+
+/* =========================================================
+   ENTRADA PRINCIPAL
+   AJUSTADA HACIA LA DERECHA
+========================================================= */
+
+.hotspot.entrada {
+    left: 8.2%;
+    top: 27.4%;
+
+    width: 6.2%;
+    height: 2.8%;
+}
+
+.hotspot.entrada:hover {
+    background: rgba(25, 135, 84, 0.08);
+
+    border-color: #198754;
+
+    box-shadow:
+        0 0 8px
+        rgba(25, 135, 84, 0.65);
+}
+
+
+/* =========================================================
+   INFORMACIÓN
+   ÚLTIMO CAMBIO:
+   RECUADRO MÁS PEQUEÑO Y CENTRADO
+========================================================= */
+
+.hotspot.informacion {
+    left: 21.2%;
+    top: 27.15%;
+
+    width: 7.8%;
+    height: 3.1%;
+}
+
+.hotspot.informacion:hover {
+    background: rgba(0, 82, 155, 0.08);
+
+    border-color: #00529b;
+
+    box-shadow:
+        0 0 8px
+        rgba(0, 82, 155, 0.65);
+}
+
+
+/* =========================================================
+   ADMISIONES
+========================================================= */
+
+.hotspot.admisiones {
+    left: 35.8%;
+    top: 27.4%;
+
+    width: 6.3%;
+    height: 2.9%;
+}
+
+.hotspot.admisiones:hover {
+    background: rgba(0, 139, 139, 0.08);
+
+    border-color: #008b8b;
+
+    box-shadow:
+        0 0 8px
+        rgba(0, 139, 139, 0.65);
+}
+
+
+/* =========================================================
+   SALA DE ESPERA
+   BAJADO PARA NO TAPAR LAS LETRAS
+========================================================= */
+
+.hotspot.espera {
+    left: 48.6%;
+    top: 28.2%;
+
+    width: 8.1%;
+    height: 3%;
+}
+
+.hotspot.espera:hover {
+    background: rgba(93, 48, 138, 0.08);
+
+    border-color: #5d308a;
+
+    box-shadow:
+        0 0 8px
+        rgba(93, 48, 138, 0.65);
+}
+
+
+/* =========================================================
+   CONSULTA EXTERNA
+========================================================= */
+
+.hotspot.consulta {
+    left: 66.6%;
+    top: 27.1%;
+
+    width: 7.3%;
+    height: 3.3%;
+}
+
+.hotspot.consulta:hover {
+    background: rgba(198, 40, 40, 0.08);
+
+    border-color: #c62828;
+
+    box-shadow:
+        0 0 8px
+        rgba(198, 40, 40, 0.65);
+}
+
+
+/* =========================================================
+   CONSULTORIO DE MEDICINA GENERAL
+   AJUSTADO HACIA LA DERECHA
+========================================================= */
+
+.hotspot.medicina {
+    left: 87.2%;
+    top: 27.2%;
+
+    width: 8.2%;
+    height: 3.3%;
+}
+
+.hotspot.medicina:hover {
+    background: rgba(0, 72, 145, 0.08);
+
+    border-color: #004891;
+
+    box-shadow:
+        0 0 8px
+        rgba(0, 72, 145, 0.65);
+}
+
+
+/* =========================================================
+   ZONAS DE ACCESIBILIDAD
+========================================================= */
+
+.hotspot.rampa {
+    left: 5%;
+    top: 53%;
+
+    width: 7%;
+    height: 16%;
+}
+
+.hotspot.bano-accesible {
+    left: 13%;
+    top: 53%;
+
+    width: 13%;
+    height: 16%;
+}
+
+.hotspot.ascensor {
+    left: 26%;
+    top: 53%;
+
+    width: 11%;
+    height: 16%;
+}
+
+.hotspot.banos {
+    left: 37%;
+    top: 53%;
+
+    width: 12%;
+    height: 16%;
+}
+
+.hotspot.escaleras {
+    left: 49%;
+    top: 53%;
+
+    width: 11%;
+    height: 16%;
+}
+
+
+/* =========================================================
+   RESALTADO DE ACCESIBILIDAD
+========================================================= */
+
+.hotspot.rampa:hover,
+.hotspot.bano-accesible:hover,
+.hotspot.ascensor:hover,
+.hotspot.banos:hover,
+.hotspot.escaleras:hover {
+    background: rgba(13, 110, 253, 0.06);
+
+    border-color: rgba(13, 110, 253, 0.65);
+
+    box-shadow:
+        0 0 10px
+        rgba(13, 110, 253, 0.40);
+}
+
+.hotspot.accesible-activo {
+    background: rgba(13, 110, 253, 0.13);
+
+    border-color: #0d6efd;
+
+    box-shadow:
+        0 0 9px
+        rgba(13, 110, 253, 0.80);
+}
+
+
+/* =========================================================
+   OTROS ELEMENTOS DEL MAPA
+========================================================= */
+
+.hotspot.senalizacion {
+    left: 62.5%;
+    top: 54%;
+
+    width: 7.5%;
+    height: 15%;
+}
+
+.hotspot.pictogramas {
+    left: 70%;
+    top: 54%;
+
+    width: 7%;
+    height: 15%;
+}
+
+.hotspot.piso-tactil {
+    left: 77%;
+    top: 54%;
+
+    width: 7%;
+    height: 15%;
+}
+
+.hotspot.extintor {
+    left: 84%;
+    top: 54%;
+
+    width: 6%;
+    height: 15%;
+}
+
+.hotspot.salida {
+    left: 90%;
+    top: 54%;
+
+    width: 8%;
+    height: 15%;
+}
+
+
+/* =========================================================
+   CONFIGURACIÓN GENERAL DE PERSONAJES
+========================================================= */
+
+.persona {
+    position: absolute;
+
+    pointer-events: none;
+
+    object-fit: contain;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform-origin: center bottom;
+
+    filter:
+        drop-shadow(
+            0 6px 5px
+            rgba(0, 0, 0, 0.25)
+        );
+}
+
+
+/* =========================================================
+   PACIENTE CON MULETAS
+========================================================= */
+
+.persona-muletas {
+    left: 10.5%;
+    top: 42.7%;
+
+    width: 95px;
+    height: 145px;
+
+    z-index: 85;
+
+    transform:
+        translate(-50%, -88%);
+
+    transition:
+        left 1.05s ease-in-out,
+        top 1.05s ease-in-out,
+        opacity 0.20s ease;
+}
+
+.persona-muletas.activo {
+    display: block !important;
+
+    opacity: 1 !important;
+
+    visibility: visible !important;
+}
+
+
+/* =========================================================
+   EFECTO DE CAMINAR
+========================================================= */
+
+.persona-muletas.caminando {
+    animation:
+        caminarPaciente
+        0.34s
+        infinite
+        alternate
+        ease-in-out;
+}
+
+@keyframes caminarPaciente {
+
+    from {
+        transform:
+            translate(-50%, -88%)
+            translateY(0)
+            rotate(-1deg);
+    }
+
+    to {
+        transform:
+            translate(-50%, -88%)
+            translateY(-4px)
+            rotate(1deg);
+    }
+}
+
+
+/* =========================================================
+   PACIENTE SENTADO
+   SALA DE ESPERA
+========================================================= */
+
+.persona-sentado {
+    position: absolute;
+
+    left: 51.8%;
+    top: 44.2%;
+
+    width: 70px;
+    height: auto;
+
+    z-index: 92;
+
+    pointer-events: none;
+
+    object-fit: contain;
+
+    transform:
+        translate(-50%, -100%);
+
+    transform-origin:
+        center bottom;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    display: none;
+
+    filter:
+        drop-shadow(
+            0 4px 4px
+            rgba(0, 0, 0, 0.18)
+        );
+
+    transition:
+        opacity 0.30s ease;
+}
+
+.persona-sentado.visible {
+    display: block !important;
+
+    opacity: 1 !important;
+
+    visibility: visible !important;
+
+    animation:
+        aparecerSentado
+        0.35s
+        ease;
+}
+
+@keyframes aparecerSentado {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -95%);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -100%);
+    }
+}
+
+
+/* =========================================================
+   PERSONA EN SILLA DE RUEDAS
+========================================================= */
+
+.persona-silla {
+    left: 7%;
+    top: 67%;
+
+    width: 120px;
+    height: auto;
+
+    z-index: 100;
+
+    transform:
+        translate(-50%, -100%);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        left 0.9s ease-in-out,
+        top 0.9s ease-in-out,
+        opacity 0.25s ease;
+}
+
+.persona-silla.activo {
+    display: block !important;
+
+    opacity: 1 !important;
+
+    visibility: visible !important;
+}
+
+
+/* =========================================================
+   EFECTO DE MOVIMIENTO SILLA DE RUEDAS
+========================================================= */
+
+.persona-silla.moviendo {
+    animation:
+        movimientoSilla
+        0.38s
+        infinite
+        alternate
+        ease-in-out;
+}
+
+@keyframes movimientoSilla {
+
+    from {
+        transform:
+            translate(-50%, -100%)
+            translateY(0);
+    }
+
+    to {
+        transform:
+            translate(-50%, -100%)
+            translateY(-2px);
+    }
+}
+
+
+/* =========================================================
+   CAPA DE RUTA INTERACTIVA
+========================================================= */
+
+.capa-ruta-interactiva {
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 25;
+}
+
+
+/* =========================================================
+   TRAMOS DE RUTA
+========================================================= */
+
+.tramo-ruta {
+    position: absolute;
+
+    height: 7px;
+
+    border-radius: 8px;
+
+    opacity: 0;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+/* RUTA 1 - VERDE */
+
+.tramo-1 {
+    left: 10.5%;
+    top: 49.2%;
+
+    width: 14%;
+
+    background: #198754;
+}
+
+
+/* RUTA 2 - NARANJA */
+
+.tramo-2 {
+    left: 24%;
+    top: 49.2%;
+
+    width: 15%;
+
+    background: #ff9800;
+}
+
+
+/* RUTA 3 - TURQUESA */
+
+.tramo-3 {
+    left: 39%;
+    top: 49.2%;
+
+    width: 15%;
+
+    background: #07989b;
+}
+
+
+/* RUTA 4 - MORADO */
+
+.tramo-4 {
+    left: 54%;
+    top: 49.2%;
+
+    width: 12%;
+
+    background: #673494;
+}
+
+
+/* RUTA 5 - ROJO */
+
+.tramo-5 {
+    left: 66%;
+    top: 49.2%;
+
+    width: 15%;
+
+    background: #d52227;
+}
+
+
+/* RUTA 6 - AZUL */
+
+.tramo-6 {
+    left: 81%;
+    top: 49.2%;
+
+    width: 8%;
+
+    background: #075ba6;
+}
+
+
+/* =========================================================
+   TRAMO RECORRIDO
+========================================================= */
+
+.tramo-ruta.recorrido {
+    opacity: 0.95;
+
+    transform:
+        scaleY(1.45);
+
+    box-shadow:
+        0 0 5px
+        rgba(255, 255, 255, 0.95),
+
+        0 0 10px
+        rgba(13, 110, 253, 0.65);
+}
+
+
+/* =========================================================
+   PASO ACTIVO
+========================================================= */
+
+.paso-activo {
+    transform:
+        translateY(-4px)
+        scale(1.02);
+
+    box-shadow:
+        0 0 0 2px #0d6efd,
+        0 7px 18px
+        rgba(13, 110, 253, 0.20) !important;
+}
+
+
+/* =========================================================
+   PANEL DE INFORMACIÓN
+========================================================= */
+
+.panel-info {
+    position: relative;
+
+    margin-top: 20px;
+
+    padding: 22px 26px;
+
+    min-height: 110px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f7fbff,
+            #eaf4ff
+        );
+
+    border: 1px solid #b9d8ff;
+
+    border-left: 6px solid #0d6efd;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 6px 20px
+        rgba(0, 0, 0, 0.06);
+}
+
+.panel-info h2 {
+    margin: 0 0 8px;
+
+    color: #074b78;
+}
+
+.panel-info p {
+    margin: 0;
+
+    color: #344054;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   CONTROLES
+========================================================= */
+
+.controles {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin: 18px 0;
+}
+
+.controles button {
+    min-width: 180px;
+
+    padding: 12px 18px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: #0d6efd;
+
+    color: #ffffff;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.controles button:hover {
+    background: #084298;
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   EXPLICACIÓN
+========================================================= */
+
+.explicacion {
+    margin-top: 24px;
+
+    padding: 22px;
+
+    background: #f8fbff;
+
+    border: 1px solid #d5e5f7;
+
+    border-radius: 12px;
+}
+
+.explicacion h2 {
+    text-align: center;
+
+    color: #073b70;
+}
+
+
+/* =========================================================
+   PASOS DEL RECORRIDO
+========================================================= */
+
+.pasos {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 12px;
+
+    margin-top: 18px;
+}
+
+.paso {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 14px;
+
+    background: #ffffff;
+
+    border-radius: 9px;
+
+    box-shadow:
+        0 2px 8px
+        rgba(0, 0, 0, 0.07);
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.paso span {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #ffffff;
+
+    border-radius: 50%;
+}
+
+.paso1 span {
+    background: #229447;
+}
+
+.paso2 span {
+    background: #ff9800;
+}
+
+.paso3 span {
+    background: #15989c;
+}
+
+.paso4 span {
+    background: #673494;
+}
+
+.paso5 span {
+    background: #d52227;
+}
+
+.paso6 span {
+    background: #075ba6;
+}
+
+
+/* =========================================================
+   ACCESIBILIDAD
+========================================================= */
+
+.accesibilidad {
+    margin-top: 24px;
+
+    padding: 22px;
+
+    background: #ffffff;
+
+    border: 1px solid #d5e5f7;
+
+    border-radius: 12px;
+}
+
+.accesibilidad h2 {
+    text-align: center;
+
+    color: #073b70;
+}
+
+.tarjetas-accesibilidad {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+
+    margin-top: 18px;
+}
+
+.tarjetas-accesibilidad article {
+    padding: 18px;
+
+    background: #f8fbff;
+
+    border: 1px solid #d8e8fa;
+
+    border-radius: 10px;
+}
+
+
+/* =========================================================
+   PIE DE PÁGINA
+========================================================= */
+
+.pie {
+    margin-top: 24px;
+
+    padding-top: 16px;
+
+    border-top: 1px solid #dce5ef;
+
+    text-align: center;
+
+    color: #64748b;
+}
+
+
+/* =========================================================
+   RESPONSIVE – TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .persona-muletas {
+        width: 78px;
+        height: 120px;
+    }
+
+    .persona-sentado {
+        width: 60px;
+    }
+
+    .persona-silla {
+        width: 100px;
+    }
+
+    .pasos {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .tarjetas-accesibilidad {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE – CELULAR
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .contenedor {
+        width: 100%;
+
+        margin: 0;
+
+        padding: 8px;
+    }
+
+    .encabezado h1 {
+        font-size: 24px;
+    }
+
+    .persona-muletas {
+        width: 55px;
+        height: 85px;
+    }
+
+    .persona-sentado {
+        width: 45px;
+    }
+
+    .persona-silla {
+        width: 72px;
+    }
+
+    .pasos,
+    .tarjetas-accesibilidad {
+        grid-template-columns: 1fr;
+    }
+
+    .controles {
+        flex-direction: column;
+    }
+
+    .controles button {
+        width: 100%;
+    }
+}

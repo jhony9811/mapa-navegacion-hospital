@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Mapa de Navegación - Hospital</title>
+
+    <link
+        rel="stylesheet"
+        href="estilos.css"
+    >
+</head>
+
+
+<body>
+
+<main class="contenedor">
+
+
+    <!-- =====================================================
+         ENCABEZADO
+    ====================================================== -->
+
+    <header class="encabezado">
+
+        <h1>
+            Mapa de Navegación – Hospital
+        </h1>
+
+        <p class="subtitulo">
+            Prueba de usabilidad y accesibilidad
+        </p>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAPA PRINCIPAL
+    ====================================================== -->
+
+    <div
+        class="mapa-wrapper"
+        id="mapa-wrapper"
+    >
+
+
+        <!-- IMAGEN PRINCIPAL DEL HOSPITAL -->
+
+        <img
+            src="mapa-hospital.png"
+            alt="Mapa de navegación del hospital"
+            class="mapa-imagen"
+            id="mapa-hospital"
+        >
+
+
+
+        <!-- =================================================
+             PACIENTE CAMINANDO CON MULETAS
+        ================================================== -->
+
+        <img
+            id="persona-muletas"
+            class="persona persona-muletas"
+            src="paciente-muletas.png"
+            alt="Paciente caminando con muletas"
+        >
+
+
+
+        <!-- =================================================
+             PACIENTE SENTADO
+             SOLO APARECE EN SALA DE ESPERA
+        ================================================== -->
+
+        <img
+            id="persona-sentado"
+            class="persona persona-sentado"
+            src="paciente-sentado.png"
+            alt="Paciente sentado en la sala de espera"
+        >
+
+
+
+        <!-- =================================================
+             USUARIO EN SILLA DE RUEDAS
+        ================================================== -->
+
+        <img
+            id="persona-silla"
+            class="persona persona-silla"
+            src="usuario-silla.png"
+            alt="Usuario en silla de ruedas acompañado por personal de salud"
+        >
+
+
+
+        <!-- =================================================
+             CAPA DE RESALTADO DE RUTA PRINCIPAL
+        ================================================== -->
+
+        <div
+            class="capa-ruta-interactiva"
+            aria-hidden="true"
+        >
+
+            <div
+                id="tramo-1"
+                class="tramo-ruta tramo-1"
+            ></div>
+
+            <div
+                id="tramo-2"
+                class="tramo-ruta tramo-2"
+            ></div>
+
+            <div
+                id="tramo-3"
+                class="tramo-ruta tramo-3"
+            ></div>
+
+            <div
+                id="tramo-4"
+                class="tramo-ruta tramo-4"
+            ></div>
+
+            <div
+                id="tramo-5"
+                class="tramo-ruta tramo-5"
+            ></div>
+
+            <div
+                id="tramo-6"
+                class="tramo-ruta tramo-6"
+            ></div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             1. ENTRADA PRINCIPAL
+        ================================================== -->
+
+        <button
+            type="button"
+            class="hotspot entrada"
+
+            aria-label="Entrada principal"
+
+            onmouseenter="activarPaso(1)"
+
+            onclick="mostrarInfo(
+                'Paso 1 – Entrada principal',
+                'El paciente inicia su recorrido en el Punto A, ubicado en la entrada principal del hospital.'
+            )"
+        ></button>
+
+
+
+        <!-- =================================================
+             2. INFORMACIÓN / RECEPCIÓN
+        ================================================== -->
+
+        <button
+            type="button"
+            class="hotspot informacion"
+
+            aria-label="Información y recepción"
+
+            onmouseenter="activarPaso(2)"
+
+            onclick="mostrarInfo(
+                'Paso 2 – Información / Recepción',
+                'El paciente se dirige al punto de información para recibir orientación.'
+            )"
+        ></button>
+
+
+
+        <!-- =================================================
+             3. ADMISIONES
+        ================================================== -->
+
+        <button
+            type="button"
+            class="hotspot admisiones"
+
+            aria-label="Admisiones y registro"
+
+            onmouseenter="activarPaso(3)"
+
+            onclick="mostrarInfo(
+                'Paso 3 – Admisiones / Registro',
+                'El paciente continúa hacia Admisiones para realizar su registro.'
+            )"
+        ></button>
+
+
+
+        <!-- =================================================
+             4. SALA DE ESPERA
+
+             AQUÍ:
+             - desaparece paciente-muletas.png
+             - aparece paciente-sentado.png
+        ================================================== -->
+
+        <button
+            type="button"
+            class="hotspot espera"
+
+            aria-label="Sala de espera"
+
+            onmouseenter="activarPaso(4)"
+
+            onclick="mostrarInfo(
+                'Paso 4 – Sala de espera',
+                'El paciente llega a la sala de espera, toma asiento y espera su turno de atención.'
+            )"
+        ></button>
+
+
+
+        <!-- =================================================
+             5. CONSULTA EXTERNA
+
+             AQUÍ:
+             - desaparece paciente sentado
+             - vuelve paciente con muletas
+        ================================================== -->
+
+        <button
+            type="button"
+            class="hotspot consulta"
+
+            aria-label="Consulta externa"
+
+            onmouseenter="activarPaso(5)"
+
+            onclick="mostrarInfo(
+                'Paso 5 – Consulta externa',
+                'El paciente se levanta de la sala de espera y continúa por el pasillo de Consulta Externa.'
+            )"
+        ></button>
+
+
+
+        <!-- =================================================
+             6. MEDICINA GENERAL
+        ================================================== -->
+
+        <button
+            type="button"
+            class="hotspot medicina"
+
+            aria-label="Consultorio de medicina general"
+
+            onmouseenter="activarPaso(6)"
+
+            onclick="mostrarInfo(
+                'Paso 6 – Medicina General',
+                'El paciente completa el recorrido y llega al Punto B: Consultorio de Medicina General.'
+            )"
+        ></button>
+
+
+
+        <!-- =================================================
+             RAMPA ACCESIBLE
+        ================================================== -->
+
+        <button
+            type="button"
+            class="hotspot rampa"
+
+            aria-label="Rampa accesible"
+
+            onclick="mostrarInfo(
+                'Rampa accesible',
+                'Facilita el ingreso y desplazamiento de usuarios en silla de ruedas.'
+            )"
+        ></button>
+
+
+
+        <!-- =================================================
+             BAÑO ACCESIBLE
+        ================================================== -->
+
+        <button
+            type="button"
+            class="hotspot bano-accesible"
+
+            aria-label="Baño accesible"
+
+            onclick="mostrarInfo(
+                'Baño accesible',
+                'Espacio adecuado para usuarios en silla de ruedas y personas con movilidad reducida.'
+            )"
+        ></button>
+
+
+
+        <!-- =================================================
+             ASCENSOR
+        ================================================== -->
+
+        <button
+            type="button"
+            class="hotspot ascensor"
+
+            aria-label="Ascensor"
+
+            onclick="mostrarInfo(
+                'Ascensor accesible',
+                'Permite el desplazamiento seguro entre diferentes niveles del hospital.'
+            )"
+        ></button>
+
+
+
+        <!-- =================================================
+             BAÑOS
+        ================================================== -->
+
+        <button
+            type="button"
+            class="hotspot banos"
+
+            aria-label="Servicios sanitarios"
+
+            onclick="mostrarInfo(
+                'Servicios sanitarios',
+                'Zona destinada a los servicios sanitarios de los usuarios del hospital.'
+            )"
+        ></button>
+
+
+
+        <!-- =================================================
+             ESCALERAS
+        ================================================== -->
+
+        <button
+            type="button"
+            class="hotspot escaleras"
+
+            aria-label="Escaleras"
+
+            onclick="mostrarInfo(
+                'Escaleras',
+                'Permiten el desplazamiento entre diferentes niveles del hospital.'
+            )"
+        ></button>
+
+
+
+        <!-- =================================================
+             SEÑALIZACIÓN
+        ================================================== -->
+
+        <button
+            type="button"
+            class="hotspot senalizacion"
+
+            aria-label="Señalización visual"
+
+            onclick="mostrarInfo(
+                'Señalización visual',
+                'Facilita la orientación de los usuarios dentro del hospital.'
+            )"
+        ></button>
+
+
+
+        <!-- =================================================
+             PICTOGRAMAS
+        ================================================== -->
+
+        <button
+            type="button"
+            class="hotspot pictogramas"
+
+            aria-label="Pictogramas"
+
+            onclick="mostrarInfo(
+                'Pictogramas claros',
+                'Los pictogramas permiten identificar rápidamente servicios y espacios.'
+            )"
+        ></button>
+
+
+
+        <!-- =================================================
+             PISO TÁCTIL
+        ================================================== -->
+
+        <button
+            type="button"
+            class="hotspot piso-tactil"
+
+            aria-label="Piso táctil"
+
+            onclick="mostrarInfo(
+                'Piso táctil o podotáctil',
+                'Facilita la orientación de personas con discapacidad visual.'
+            )"
+        ></button>
+
+
+
+        <!-- =================================================
+             EXTINTOR
+        ================================================== -->
+
+        <button
+            type="button"
+            class="hotspot extintor"
+
+            aria-label="Extintor"
+
+            onclick="mostrarInfo(
+                'Extintor',
+                'Elemento de seguridad utilizado para atender inicialmente una emergencia relacionada con fuego.'
+            )"
+        ></button>
+
+
+
+        <!-- =================================================
+             SALIDA DE EMERGENCIA
+        ================================================== -->
+
+        <button
+            type="button"
+            class="hotspot salida"
+
+            aria-label="Salida de emergencia"
+
+            onclick="mostrarInfo(
+                'Salida de emergencia',
+                'Ruta señalizada para evacuar de forma segura el hospital.'
+            )"
+        ></button>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         PANEL DE INFORMACIÓN
+    ====================================================== -->
+
+    <section
+        class="panel-info"
+        id="panel-info"
+        aria-live="polite"
+    >
+
+        <h2 id="titulo-info">
+            Selecciona una zona del mapa
+        </h2>
+
+        <p id="texto-info">
+            Pasa el mouse por Entrada, Información, Admisiones,
+            Sala de espera, Consulta externa o Medicina General
+            para observar el recorrido.
+        </p>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CONTROLES
+    ====================================================== -->
+
+    <section class="controles">
+
+
+        <button
+            type="button"
+            onclick="iniciarRecorrido()"
+        >
+            ▶ Iniciar recorrido
+        </button>
+
+
+        <button
+            type="button"
+            onclick="mostrarRuta()"
+        >
+            👣 Mostrar ruta principal
+        </button>
+
+
+        <button
+            type="button"
+            onclick="iniciarRecorridoSilla()"
+        >
+            ♿ Recorrido accesible
+        </button>
+
+
+        <button
+            type="button"
+            onclick="ocultarRuta()"
+        >
+            👁 Ocultar recorrido
+        </button>
+
+
+        <button
+            type="button"
+            onclick="reiniciar()"
+        >
+            ↻ Reiniciar mapa
+        </button>
+
+
+    </section>
+
+
+
+    <!-- =====================================================
+         RECORRIDO PRINCIPAL
+    ====================================================== -->
+
+    <section class="explicacion">
+
+        <h2>
+            Recorrido principal
+        </h2>
+
+
+        <div class="pasos">
+
+
+            <div
+                class="paso paso1"
+                onmouseenter="activarPaso(1)"
+            >
+
+                <span>1</span>
+
+                Entrada principal
+
+            </div>
+
+
+            <div
+                class="paso paso2"
+                onmouseenter="activarPaso(2)"
+            >
+
+                <span>2</span>
+
+                Información / Recepción
+
+            </div>
+
+
+            <div
+                class="paso paso3"
+                onmouseenter="activarPaso(3)"
+            >
+
+                <span>3</span>
+
+                Admisiones / Registro
+
+            </div>
+
+
+            <div
+                class="paso paso4"
+                onmouseenter="activarPaso(4)"
+            >
+
+                <span>4</span>
+
+                Sala de espera
+
+            </div>
+
+
+            <div
+                class="paso paso5"
+                onmouseenter="activarPaso(5)"
+            >
+
+                <span>5</span>
+
+                Consulta externa
+
+            </div>
+
+
+            <div
+                class="paso paso6"
+                onmouseenter="activarPaso(6)"
+            >
+
+                <span>6</span>
+
+                Medicina General
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         ELEMENTOS DE ACCESIBILIDAD
+    ====================================================== -->
+
+    <section class="accesibilidad">
+
+
+        <h2>
+            Elementos de accesibilidad identificados
+        </h2>
+
+
+        <p>
+            El hospital dispone de diferentes elementos
+            destinados a facilitar el desplazamiento,
+            orientación y acceso de los usuarios.
+        </p>
+
+
+        <div class="tarjetas-accesibilidad">
+
+
+            <article
+                onclick="mostrarInfo(
+                    'Rampa accesible',
+                    'Facilita el ingreso y desplazamiento de usuarios en silla de ruedas.'
+                )"
+            >
+
+                <h3>
+                    ♿ Rampa accesible
+                </h3>
+
+                <p>
+                    Facilita el ingreso y desplazamiento
+                    de usuarios en silla de ruedas.
+                </p>
+
+            </article>
+
+
+            <article
+                onclick="mostrarInfo(
+                    'Baño accesible',
+                    'Proporciona un espacio adecuado para personas con movilidad reducida.'
+                )"
+            >
+
+                <h3>
+                    🚻 Baño accesible
+                </h3>
+
+                <p>
+                    Proporciona un espacio adecuado para
+                    personas con movilidad reducida.
+                </p>
+
+            </article>
+
+
+            <article
+                onclick="mostrarInfo(
+                    'Ascensor accesible',
+                    'Facilita el desplazamiento entre diferentes niveles del hospital.'
+                )"
+            >
+
+                <h3>
+                    ↕ Ascensor
+                </h3>
+
+                <p>
+                    Facilita el desplazamiento entre
+                    diferentes niveles del hospital.
+                </p>
+
+            </article>
+
+
+            <article
+                onclick="mostrarInfo(
+                    'Piso táctil',
+                    'Facilita la orientación de personas con discapacidad visual.'
+                )"
+            >
+
+                <h3>
+                    🟧 Piso táctil
+                </h3>
+
+                <p>
+                    Facilita la orientación de personas
+                    con discapacidad visual.
+                </p>
+
+            </article>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         PIE
+    ====================================================== -->
+
+    <footer class="pie">
+
+        <p>
+            Mapa de navegación – Prueba de usabilidad y accesibilidad
+        </p>
+
+    </footer>
+
+
+</main>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
