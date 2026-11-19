@@ -468,20 +468,109 @@ async function iniciarRecorrido() {
 
     activarPaso(2);
 
-    await esperar(1300);
+    // Esperar a que el paciente llegue a Recepción
+await esperar(1300);
 
+// Mostrar el asesor y escuchar las indicaciones
+mostrarBienvenidaAsesor();
+
+// Esperar a que el usuario pulse "Continuar recorrido"
+await new Promise(resolve => {
+    continuarDespuesDelAsesor = resolve;
+});
+
+// Continuar hacia Admisiones
 
     activarPaso(3);
 
-    await esperar(1300);
+// Esperar a que el paciente llegue a Admisiones
+await esperar(1300);
 
+// Cambiar el título de la ventana
+const tituloAsesor = document.querySelector(
+    "#dialogo-asesor .asesor-informacion h3"
+);
 
-    activarPaso(4);
+const mensajeAsesor = document.getElementById("mensaje-asesor");
 
+if (tituloAsesor) {
+    tituloAsesor.textContent = "🏥 Admisiones y Registro";
+}
 
-    // Permanece sentado un momento
+if (mensajeAsesor) {
+    mensajeAsesor.textContent =
+        "¡Bienvenido al área de Admisiones! " +
+        "Presenta tu documento de identidad al personal encargado " +
+        "para verificar tu cita y completar el registro. " +
+        "Cuando finalices, dirígete a la sala de espera de Medicina General, " +
+        "toma asiento y permanece atento hasta que el médico o el personal " +
+        "de salud te llame por tu nombre.";
+}
 
-    await esperar(2800);
+// Cargar nuevamente el avatar de Sofía
+const videoAdmisiones = document.getElementById("video-enfermera-admisiones");
+
+const videoRecepcion = document.getElementById("video-enfermera");
+
+if (videoRecepcion && videoAdmisiones) {
+    videoRecepcion.style.display = "none";
+    videoAdmisiones.style.display = "block";
+}
+
+if (videoAdmisiones) {
+    videoAdmisiones.src =
+        "https://app.heygen.com/embeds/60a72ad20bff462587487297ca55f9a0?autoplay=1";
+
+    videoAdmisiones.style.display = "block";
+}
+
+// Mostrar la ventana
+document.getElementById("dialogo-asesor").hidden = false;
+
+// Esperar a que el usuario pulse Continuar recorrido
+await new Promise(resolve => {
+    continuarDespuesDelAsesor = resolve;
+});
+
+// Avanzar hacia la sala de espera
+activarPaso(4);
+
+// Esperar a que el paciente llegue a la sala de espera
+await esperar(1300);
+
+// El paciente se sienta
+ocultarPacienteMuletas();
+mostrarPacienteSentado();
+
+// Permanece sentado esperando al médico
+await esperar(5000);
+
+// Abrir la puerta del consultorio
+const escenaConsultorio = document.getElementById("escena-consultorio");
+
+if (escenaConsultorio) {
+    escenaConsultorio.classList.add("puerta-abierta");
+}
+
+// Esperar a que termine la animación de apertura
+await esperar(1300);
+
+// El médico llama al paciente desde el consultorio
+const llamadoMedico = new SpeechSynthesisUtterance(
+    "Buenos días. Paciente de Medicina General, por favor, puede acercarse al consultorio. Es su turno de atención."
+);
+
+llamadoMedico.lang = "es-CO";
+llamadoMedico.rate = 0.9;
+llamadoMedico.pitch = 0.85;
+
+// Esperar a que el médico termine de llamar al paciente
+await new Promise(resolve => {
+    llamadoMedico.onend = resolve;
+    llamadoMedico.onerror = resolve;
+
+    window.speechSynthesis.speak(llamadoMedico);
+});
 
 
     activarPaso(5);
@@ -1144,3 +1233,143 @@ document.addEventListener(
 
     }
 );
+
+
+/* ==========================================
+   ASESOR VIRTUAL - INFORMACIÓN Y RECEPCIÓN
+========================================== */
+let continuarDespuesDelAsesor = null;
+const textoBienvenida =
+  "¡Bienvenido a nuestro hospital! Es un gusto atenderle. " +
+  "Si se dirige al consultorio de medicina general, " +
+  "primero debe acercarse al área de Admisiones " +
+  "para realizar su registro. " +
+  "Después, continúe hacia la sala de espera " +
+  "y siga la señalización hasta el consultorio. " +
+  "Si necesita apoyo para desplazarse, contamos " +
+  "con rutas accesibles. ¡Estamos aquí para ayudarle!";
+
+function hablarAsesor() {
+  if (!("speechSynthesis" in window)) {
+    alert("Este navegador no admite lectura de voz.");
+    return;
+  }
+
+  window.speechSynthesis.cancel();
+
+  const mensaje = new SpeechSynthesisUtterance(textoBienvenida);
+  mensaje.lang = "es-CO";
+  mensaje.rate = 0.9;
+  mensaje.pitch = 1;
+  mensaje.volume = 1;
+
+  const voces = window.speechSynthesis.getVoices();
+
+  const vozEspanol =
+    voces.find(v => v.lang.toLowerCase() === "es-co") ||
+    voces.find(v => v.lang.toLowerCase().startsWith("es"));
+
+  if (vozEspanol) {
+    mensaje.voice = vozEspanol;
+  }
+
+const avatarEnfermera = document.querySelector(".asesor-avatar");
+
+mensaje.onstart = function () {
+    if (avatarEnfermera) {
+        avatarEnfermera.classList.add("hablando");
+    }
+};
+
+mensaje.onend = function () {
+    if (avatarEnfermera) {
+        avatarEnfermera.classList.remove("hablando");
+    }
+};
+
+mensaje.onerror = function () {
+    if (avatarEnfermera) {
+        avatarEnfermera.classList.remove("hablando");
+    }
+};
+
+  window.speechSynthesis.speak(mensaje);
+}
+
+function mostrarBienvenidaAsesor() {
+  const dialogo = document.getElementById("dialogo-asesor");
+  const texto = document.getElementById("mensaje-asesor");
+
+  if (!dialogo || !texto) return;
+
+  texto.textContent = textoBienvenida;
+  dialogo.hidden = false;
+
+  const videoRecepcion = document.getElementById("video-enfermera");
+const videoAdmisiones = document.getElementById("video-enfermera-admisiones");
+
+videoRecepcion.style.display = "block";
+videoAdmisiones.style.display = "none";
+
+ // hablarAsesor();
+}
+
+function repetirIndicaciones() {
+    const videoAnterior = document.getElementById("video-enfermera");
+
+    if (!videoAnterior) return;
+
+    const videoNuevo = document.createElement("iframe");
+
+    videoNuevo.id = "video-enfermera";
+    videoNuevo.src = "https://app.heygen.com/embeds/72b30711bdb74aa286b24da040761a06?autoplay=1";
+    videoNuevo.title = "Sofía - Enfermera virtual hospitalaria";
+    videoNuevo.width = "220";
+    videoNuevo.height = "280";
+    videoNuevo.style.cssText = "border:0; border-radius:14px; max-width:100%;";
+    videoNuevo.allow = "autoplay; encrypted-media; fullscreen";
+    videoNuevo.allowFullscreen = true;
+
+    videoAnterior.replaceWith(videoNuevo);
+}
+
+
+function cerrarDialogoAsesor() {
+   // Detener los videos de la enfermera al cerrar la ventana
+const videosEnfermera = [
+    document.getElementById("video-enfermera"),
+    document.getElementById("video-enfermera-admisiones")
+];
+
+videosEnfermera.forEach(video => {
+    if (video) {
+        video.src = "about:blank";
+    }
+});
+   
+    // Detener la voz anterior, si existe
+    if ("speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+    }
+
+    // Detener el video de Sofía
+    const video = document.getElementById("video-enfermera");
+
+    if (video) {
+        video.src = "about:blank";
+    }
+
+    // Cerrar la ventana de recepción
+    const dialogo = document.getElementById("dialogo-asesor");
+
+    if (dialogo) {
+        dialogo.hidden = true;
+    }
+
+    // Permitir que el paciente continúe caminando
+    if (continuarDespuesDelAsesor) {
+        const continuar = continuarDespuesDelAsesor;
+        continuarDespuesDelAsesor = null;
+        continuar();
+    }
+}

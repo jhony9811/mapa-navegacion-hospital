@@ -1078,3 +1078,328 @@ body {
         width: 100%;
     }
 }
+
+
+/* =========================================
+   ASESOR VIRTUAL - RECEPCIÓN HOSPITALARIA
+========================================= */
+
+.dialogo-asesor {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: rgba(0, 20, 50, 0.55);
+}
+
+.dialogo-asesor[hidden] {
+    display: none;
+}
+
+.dialogo-contenido {
+    background: #ffffff;
+    color: #16345f;
+    border-radius: 18px;
+    padding: 28px;
+    max-width: 500px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+    text-align: center;
+}
+
+.dialogo-contenido h3 {
+    color: #0757aa;
+    font-size: 23px;
+    margin: 0 0 15px;
+}
+
+.dialogo-contenido p {
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.dialogo-contenido button {
+    background: #0866d9;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin: 6px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.dialogo-contenido button:hover {
+    background: #064caa;
+}
+
+@media (max-width: 600px) {
+    .dialogo-contenido {
+        padding: 20px;
+    }
+
+    .dialogo-contenido h3 {
+        font-size: 20px;
+    }
+
+    .dialogo-contenido p {
+        font-size: 15px;
+    }
+}
+
+
+/* CORRECCIÓN DEL TAMAÑO DE LA ENFERMERA */
+
+.dialogo-contenido {
+    width: min(900px, 95vw);
+    max-width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+.asesor-presentacion {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 22px;
+    width: 100%;
+}
+
+.asesor-avatar {
+    flex: 0 0 230px;
+    width: 230px;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.asesor-avatar img {
+    display: block;
+    width: 100%;
+    height: 280px;
+    max-height: 280px;
+    object-fit: contain;
+    border-radius: 14px;
+}
+
+.asesor-informacion {
+    flex: 1;
+    min-width: 0;
+}
+
+@media (max-width: 650px) {
+    .asesor-presentacion {
+        flex-direction: column;
+    }
+
+    .asesor-avatar {
+        flex: none;
+        width: 160px;
+    }
+
+    .asesor-avatar img {
+        height: 180px;
+        max-height: 180px;
+    }
+
+    .asesor-informacion {
+        width: 100%;
+    }
+}
+
+/* Alinear los videos de Sofía en Recepción y Admisiones */
+
+#dialogo-asesor .asesor-presentacion {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    align-items: center;
+    gap: 24px;
+}
+
+#dialogo-asesor .asesor-avatar {
+    width: 220px;
+    max-width: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#video-enfermera,
+#video-enfermera-admisiones {
+    width: 220px;
+    height: 280px;
+    max-width: 100%;
+    border: 0;
+    border-radius: 14px;
+}
+
+/* Evitar espacios innecesarios */
+#dialogo-asesor .dialogo-contenido {
+    width: 850px;
+    max-width: 95vw;
+    padding: 24px;
+}
+
+@media (max-width: 650px) {
+    #dialogo-asesor .asesor-presentacion {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    #dialogo-asesor .asesor-avatar {
+        width: 150px;
+        max-width: 150px;
+        margin: 0 auto;
+    }
+
+    #video-enfermera,
+    #video-enfermera-admisiones {
+        width: 150px;
+        height: 170px;
+    }
+}
+
+/* Corregir alineación del avatar de Sofía */
+
+#dialogo-asesor .asesor-avatar iframe {
+    display: block;
+    width: 220px;
+    height: 280px;
+    flex-shrink: 0;
+}
+
+/* El iframe oculto no debe ocupar espacio */
+#dialogo-asesor .asesor-avatar iframe[style*="display: none"] {
+    display: none !important;
+}
+
+#dialogo-asesor .asesor-presentacion {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    align-items: center;
+    gap: 24px;
+}
+
+#dialogo-asesor .asesor-avatar {
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#dialogo-asesor .dialogo-contenido {
+    width: 850px;
+    max-width: 95vw;
+    padding: 24px;
+}
+
+@media (max-width: 650px) {
+    #dialogo-asesor .asesor-presentacion {
+        grid-template-columns: 1fr;
+    }
+
+    #dialogo-asesor .asesor-avatar {
+        width: 150px;
+        margin: 0 auto;
+    }
+
+    #dialogo-asesor .asesor-avatar iframe {
+        width: 150px;
+        height: 190px;
+    }
+}
+
+/* Botón de cierre de la ventana hospitalaria */
+#dialogo-asesor .dialogo-contenido {
+    position: relative;
+}
+
+.cerrar-ventana-asesor {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 50%;
+    background: #eef2f7;
+    color: #344054;
+    font-size: 27px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.cerrar-ventana-asesor:hover {
+    background: #fee2e2;
+    color: #dc2626;
+    transform: scale(1.08);
+}
+
+.cerrar-ventana-asesor:focus-visible {
+    outline: 3px solid #2563eb;
+    outline-offset: 2px;
+}
+
+/* Contenedor del mapa */
+#mapa-wrapper {
+    position: relative;
+}
+
+
+/* Interior del consultorio */
+#interior-consultorio {
+    position: absolute;
+    inset: 0;
+    background: #26394a;
+    border: 2px solid #65452e;
+}
+
+/* Puerta */
+#puerta-consultorio {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, #98633b, #c48b57);
+    border: 2px solid #684426;
+    border-radius: 2px;
+    transform-origin: left center;
+    transition: transform 1.2s ease-in-out;
+    z-index: 2;
+}
+
+/* Puerta abierta */
+#escena-consultorio {
+    position: absolute;
+    left: 88.6%;
+    top: 32.5%;
+    width: 2.7%;
+    height: 10%;
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* Apertura de la puerta del consultorio */
+#escena-consultorio.puerta-abierta #puerta-consultorio {
+    transform: perspective(400px) rotateY(-75deg);
+}
+
+/* Médico visible */
+#escena-consultorio.medico-visible #medico-consultorio {
+    opacity: 1;
+    transform: translateY(0);
+}

@@ -60,6 +60,24 @@
             id="mapa-hospital"
         >
 
+        <!-- ESCENA ANIMADA DEL CONSULTORIO -->
+<div id="escena-consultorio" aria-hidden="true">
+
+    <!-- Interior visible cuando se abre la puerta -->
+    <div id="interior-consultorio"></div>
+
+    <!-- Médico que sale a llamar al paciente -->
+    <img
+        id="medico-consultorio"
+        src="imagenes/medico.png"
+        alt=""
+    >
+
+    <!-- Puerta animada -->
+    <div id="puerta-consultorio"></div>
+
+</div>
+
 
 
         <!-- =================================================
@@ -741,7 +759,60 @@
 
 
 </main>
+<!-- BIENVENIDA DEL ASESOR DE RECEPCIÓN -->
+<div id="dialogo-asesor" class="dialogo-asesor" hidden>
+  <div class="dialogo-contenido">
 
+    <button
+    type="button"
+    class="cerrar-ventana-asesor"
+    onclick="cerrarDialogoAsesor()"
+    aria-label="Cerrar ventana de orientación"
+    title="Cerrar ventana"
+>
+    &times;
+</button>
+    
+<div class="asesor-presentacion">
+  <div class="asesor-avatar">
+    <iframe
+    id="video-enfermera"
+    src="https://app.heygen.com/embeds/3df4e32e48e74834b4b3ce7799d0f8c1?autoplay=1"
+    title="Sofía - Enfermera virtual hospitalaria"
+    width="220"
+    height="280"
+    style="border: 0; border-radius: 14px; max-width: 100%;"
+    allow="autoplay; encrypted-media; fullscreen"
+    allowfullscreen>
+</iframe>
+<iframe
+    id="video-enfermera-admisiones"
+    src="https://app.heygen.com/embeds/60a72ad20bff462587487297ca55f9a0"
+    title="Sofía - Admisiones y Registro"
+    width="220"
+    height="280"
+    style="border: 0; border-radius: 14px; max-width: 100%; display: none;"
+    allow="autoplay; encrypted-media; fullscreen"
+    allowfullscreen>
+</iframe>
+    <span class="asesor-estado">● Asistente virtual</span>
+  </div>
+  <div class="asesor-informacion">
+
+    <h3>🏥 Información y Recepción</h3>
+    <p id="mensaje-asesor"></p>
+
+    <button type="button" onclick="repetirIndicaciones()">
+      🔊 Repetir indicaciones
+    </button>
+
+    <button type="button" onclick="cerrarDialogoAsesor()">
+      Continuar recorrido
+    </button>
+      </div>
+</div>
+  </div>
+</div>
 
 
 <!-- =========================================================
